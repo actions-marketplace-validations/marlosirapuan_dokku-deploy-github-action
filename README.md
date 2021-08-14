@@ -20,6 +20,10 @@ The user to use for ssh. If not specified, "dokku" user will be used.
 
 The Dokku host to deploy to.
 
+### dokku-ssh-port
+
+Port for ssh host. If not specified, `22` will be used.
+
 ### app-name
 
 The Dokku app name to be deployed.
@@ -40,10 +44,6 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-### ssh-port
-
-Port for ssh host. If not specified, `22` will be used.
-
 ## Example
 
 Note: `actions/checkout` must preceed this action in order for the repository data to be exposed for the action.
@@ -56,7 +56,7 @@ steps:
         fetch-depth: 0
   - id: deploy
     name: Deploy to dokku
-    uses: idoberko2/dokku-deploy-github-action@v1
+    uses: marlosirapuan/dokku-deploy-github-action@v1
     with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         dokku-host: 'my-dokku-host.com'
