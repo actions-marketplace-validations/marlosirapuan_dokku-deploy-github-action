@@ -15,6 +15,10 @@ inputs:
   dokku-host:
     description: "The dokku host to ssh into"
     required: true
+  dokku-ssh-port:
+    description: "Custom port for ssh host"
+    required: false
+    default: "22"    
   app-name:
     description: "The dokku app name"
     required: true
@@ -26,10 +30,6 @@ inputs:
     description: "Additional flags to be passed to the git push command. Could be used to force push"
     required: false
     default: ""
-  ssh-port:
-    description: "Custom port for ssh host"
-    required: false
-    default: "22"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -37,7 +37,7 @@ runs:
     - ${{ inputs.ssh-private-key }}
     - ${{ inputs.dokku-user }}
     - ${{ inputs.dokku-host }}
+    - ${{ inputs.dokku-ssh-port }}    
     - ${{ inputs.app-name }}
     - ${{ inputs.remote-branch }}
     - ${{ inputs.git-push-flags }}
-    - ${{ inputs.ssh-port }}
